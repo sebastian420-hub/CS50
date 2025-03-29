@@ -1,0 +1,47 @@
+{% extends "auctions/layout.html"%}
+{% block body %}
+<div class="container">
+    <h2>Listing: {{ listing.title }}</h2>
+<img src="{{ listing.image_url }}" alt="Image of {{ listing.title }}">
+<p>{{ listing.description }}</p>
+<p>Starting bid: ${{ listing.starting_bid }}</p>
+<h3>Highest Bid: ${{ highest_bid }}</h2>
+<p>{{bid_num}} bids so far.</p>
+<form action="{% url 'bid' listing.id %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ bid_form.bid }}
+    </div>
+    <button type="submit" class="btn btn-primary">Place bid</button>
+</form>
+<div>
+    <h4>Comments</h4>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.user }}: {{ comment.comment }}</li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'comment' listing.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ comment_form.comment }}
+        </div>
+        <button type="submit" class="btn btn-primary">Add comment</button>
+    </form>
+</div>
+<h4>Details</h4>
+ <ul>
+        <li>Created: {{ listing.created }}</li>
+        <li>Category: {{ listing.category }}</li>
+        <li>Created by: {{ listing.user }}</li>
+ </ul>
+
+{% if user.is_authenticated %}
+    {% if user == listing.user %}
+        <a href="{% url 'close' listing.id %}" class="btn btn-danger">Close listing</a>
+    {% endif %}
+{% endif %}
+
+</div>
+
+{% endblock %}

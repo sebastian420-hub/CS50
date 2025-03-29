@@ -1,0 +1,18 @@
+body {
+    padding: 10px;
+}
+
+.form-control {
+    width: 50%;
+}
+
+.container {
+    margin-top: 5em;
+    justify-content: center;
+}
+
+.comment-form {
+    max-width: 50%;
+    height: auto;
+    max-height: 100px; /* Adjust the value as needed */
+}

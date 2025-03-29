@@ -1,0 +1,26 @@
+textarea {
+    min-height: 400px;
+}
+
+#sent-emails {
+    background-color: gray;
+    padding: 20px;
+    border-radius: 2px;
+}
+
+#inbox-email {
+    background-color: gray;
+    padding: auto;
+    border-radius: 2px;
+}
+
+.email-item {
+    display: inline-flex !important;
+    margin-right: 10px !important;
+}
+
+#email-5 {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}

@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+    {% if boolean %}
+       <ul>
+        {% for listing in listings %}
+            <li>
+                <a href="{% url 'listing' listing.id %}">{{ listing.title }}</a>
+                <img src="{{ listing.image_url }}" alt="Image of {{ listing.title }}">
+                <span>by {{ listing.starting_bid }}</span>
+            </li>
+        {% endfor %}
+       </ul>
+    {% else %}
+        <p>No active listings.</p>
+    {% endif %}
+
+    {% if user.is_authenticated and closed_boolean%}
+        <a href="{% url 'closed' %}" class="btn btn-primary">Closed Listings</a>
+    {% endif %}
+    
+{% endblock %}
